@@ -1,0 +1,49 @@
+import java.util.Scanner;
+public class dateCheck {
+
+	public static void main(String[]args) {
+		Scanner keys1 = new Scanner(System.in);
+		Scanner keys2 = new Scanner(System.in);
+		
+//		System.out.println("");
+		System.out.println("This program tests if a date is in a valid dd/mm/yyyy format.");
+		System.out.println("It considers valid 1-12 month and the proper number of days per month, including the leap year calculation.");
+		System.out.println("Type the date with / after day and month, and then press Enter after year.");
+		
+		int day, month, year, dayPerMonth;
+		
+		keys2.useDelimiter("/");
+		day = keys2.nextInt(); // the delimiter is /
+		month = keys2.nextInt(); //same delimiter
+		
+		year = keys1.nextInt(); // standard delimiter after the year keyboard input. it should accept Enter
+		
+		System.out.println("day " + day);
+		System.out.println("month " + month);
+		System.out.println("year " + year);
+		
+		System.out.println("You have typed the following date: " + day + "/" + month + "/" + year + "."); // does not work properly. Issue on delimiters!
+		
+		 if ((month == 4) || (month == 6) || (month == 9) || (month == 11))
+			 dayPerMonth = 30;
+		 else if((month == 1) || (month == 3) || (month == 5) || (month == 7) || (month == 8) || (month == 10) || (month == 12))
+			 dayPerMonth = 31;
+		 else if(month == 2) { // leap year calculation 
+			 
+			 if((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0)) // Nested if for leap year calculation
+				 dayPerMonth = 29; //leap year
+			 else
+				 dayPerMonth = 28; // regoular february
+			 
+		} else {
+			dayPerMonth = 0;
+			System.out.println("Error in the month!");
+		}
+		
+		if((day >=1) && (day <= dayPerMonth) && (month >=1) && (month <=12) && (year >=0)) {
+			System.out.println("The date is in a valid format.");
+			System.out.println("The date is: " + day + "/" + month + "/" + year + ".");
+		} else
+			System.out.println("The date is in not in a valid format.");			
+	}
+}
